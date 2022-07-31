@@ -16,7 +16,7 @@ class BookServices {
   }
   async addEntry(data) {
     try {
-      return knex('books').insert({name: data.name, copies_in_shelf: data.copies_in_shelf, author: data.author})
+      return knex('books').insert({name: data.name, copies_in_shelf: parseInt(data.copies_in_shelf), author: data.author})
     } catch (e) {
       throw new Error(e.message)
     }
@@ -26,7 +26,7 @@ class BookServices {
     try {
       return await knex('books').where({id: data.book_id}).update({
         name: data.name,
-        copies_in_shelf: data.copies_in_shelf,
+        copies_in_shelf: parseInt(data.copies_in_shelf),
         author: data.author
       })
     } catch (e) {
