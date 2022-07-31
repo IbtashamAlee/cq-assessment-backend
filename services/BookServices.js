@@ -21,6 +21,18 @@ class BookServices {
       throw new Error(e.message)
     }
   }
+
+  async updateBook(data) {
+    try {
+      return await knex('books').where({id: data.book_id}).update({
+        name: data.name,
+        copies_in_shelf: data.copies_in_shelf,
+        author: data.author
+      })
+    } catch (e) {
+      throw new Error(e.message)
+    }
+  }
 }
 
 module.exports = new BookServices();

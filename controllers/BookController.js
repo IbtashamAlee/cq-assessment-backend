@@ -36,7 +36,28 @@ const addEntry = async (req, res, next) => {
   }
 }
 
+const updateBook = async (req, res, next) => {
+  try {
+    const book = await Book.updateBook(
+        {
+          name: req.body.name, copies_in_shelf: req.body.copies_in_shelf, author: req.body.author, book_id: req.body.book_id
+        }
+    );
+    res.status(200).json({
+      success: true,
+      data: book
+    })
+  } catch (e) {
+    res.status(409).json({
+      success: false,
+      data: null,
+      msg: e.message
+    })
+  }
+}
+
 module.exports = {
   getBooks,
-  addEntry
+  addEntry,
+  updateBook
 }
