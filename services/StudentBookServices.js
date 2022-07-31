@@ -24,7 +24,7 @@ class StudentBookServices {
       }
 
       await knex.transaction(async function(trx) {
-        let p1 =  knex.insert({book_id: req.body.book_id, student_id: req.body.student_id}, 'id')
+        let p1 =  knex.insert({book_id: req.body.book_id, student_id: req.body.student_id, expected_return_date: req.body.return_date}, 'id')
             .into('student_book')
             .transacting(trx);
         let p2 = knex('books').where({id: req.body.book_id}).decrement({
