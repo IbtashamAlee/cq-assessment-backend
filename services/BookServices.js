@@ -3,8 +3,7 @@ const knex = require('../data/db');
 class BookServices {
   async getBook() {
     try {
-      return knex('students')
-          .join('books', { 'students.id': 'books.student_id' })
+      return knex('books')
           .then(function(res) {
             if (res) {
               return res;
@@ -17,7 +16,7 @@ class BookServices {
   }
   async addEntry(data) {
     try {
-      return knex('books').insert({name: data.name, student_id: data.student_id, author: data.author, borrowed_at: data.borrowed_at, expected_return_date: data.expected_return_date})
+      return knex('books').insert({name: data.name, copies_in_shelf: data.copies_in_shelf, author: data.author})
     } catch (e) {
       throw new Error(e.message)
     }

@@ -7,9 +7,7 @@ exports.up = function(knex) {
     tbl.increments('id').primary().unsigned()
     tbl.string("name").notNullable().unique();
     tbl.string("author").notNullable();
-    tbl.integer('student_id').references('students.id').unsigned().index().onDelete('CASCADE')
-    tbl.timestamp('borrowed_at').defaultTo(knex.fn.now());
-    tbl.timestamp('expected_return_date');
+    tbl.integer("copies_in_shelf").notNullable();
   })
 };
 

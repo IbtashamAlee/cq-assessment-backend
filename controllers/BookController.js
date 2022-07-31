@@ -20,8 +20,7 @@ const addEntry = async (req, res, next) => {
   try {
     const book = await Book.addEntry(
         {
-          name: req.body.name, student_id: req.body.student_id, author: req.body.author,
-          borrowed_at: req.body.borrowed_at, expected_return_date: req.body.expected_return_date
+          name: req.body.name, copies_in_shelf: req.body.copies_in_shelf, author: req.body.author,
         }
     );
     res.status(200).json({
