@@ -15,6 +15,13 @@ class StudentService {
       throw new Error(e.message)
     }
   }
+  async updateStudent(data) {
+    try {
+      return knex('students').where({id: data.student_id}).update({first_name: data.first_name, last_name: data.last_name})
+    } catch (e) {
+      throw new Error(e.message)
+    }
+  }
 }
 
 module.exports = new StudentService();

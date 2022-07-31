@@ -32,7 +32,24 @@ const addStudent = async (req, res, next) => {
   }
 }
 
+const updateStudent = async (req, res, next) => {
+  try {
+    const student = await Student.updateStudent({first_name: req.body.first_name, last_name: req.body.last_name, student_id: req.body.student_id});
+    res.status(200).json({
+      success: true,
+      data: student
+    })
+  } catch (e) {
+    res.status(409).json({
+      success: false,
+      data: null,
+      msg: e.message
+    })
+  }
+}
+
 module.exports = {
   getStudents,
-  addStudent
+  addStudent,
+  updateStudent
 }
